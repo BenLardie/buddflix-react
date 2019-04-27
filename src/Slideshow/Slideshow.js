@@ -24,10 +24,11 @@ const api_key = process.env.REACT_APP_TMDB_API_KEY
 const url = `https://api.themoviedb.org/3/keyword/54169/movies?api_key=${api_key}&language=en-US&include_adult=false`
 
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w1400_and_h450_face/'
+const posterBaseUrl = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/'
 
 const Slideshow = () => {
     const [images, setImages] = useState(slideImages);
-
+    const [posters, setPosters] = useState(slideImages);
 
     useEffect(() => {
         axios.get(url).then(response => {
@@ -39,6 +40,19 @@ const Slideshow = () => {
                 }
             });
             setImages(newImages);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get(url).then(response => {
+            let newImages = [{'url': welcome, 'title': null }];
+            const results = response.data.results.slice(3, 7);
+            results.forEach(element => {
+                if (element.poster_path) {
+                    newImages.push({'url':posterBaseUrl + element.poster_path, 'title': element.title});
+                }
+            });
+            setPosters(newImages);
         });
     }, []);
 
