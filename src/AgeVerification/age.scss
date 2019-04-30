@@ -21,5 +21,12 @@ h1 {
     padding: 200px;
     background: #fd3535;
     text-align: center;
-
 }
+
+@media (max-width: 375px) {
+    img {
+          width: 350px;
+    }
+      
+
+    }     
