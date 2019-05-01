@@ -61,6 +61,13 @@ img {
     border-radius: 25px;
     box-shadow:4px 4px 0px 0px white;
 
+    }
 }
+
+@media (max-width: 375px) {
+    .movie-box {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
 
