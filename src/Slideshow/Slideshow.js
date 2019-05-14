@@ -3,6 +3,7 @@ import { Slide } from 'react-slideshow-image';
 import strain from '../Images/strain.jpg';
 import welcome from '../Images/welcomeBanner.png';
 import Avengers from '../Images/Avengers.png'
+import logo from '../Images/logo.png'
 import './Slideshow.scss';
 import axios from 'axios';
 
@@ -17,7 +18,8 @@ const properties = {
     transitionDuration: 500,
     infinite: true,
     indicators: true,
-    arrows: true
+    arrows: true,
+    imagesWidth: 100,
 }
 
 const api_key = process.env.REACT_APP_TMDB_API_KEY
@@ -33,7 +35,7 @@ const Slideshow = () => {
     useEffect(() => {
         axios.get(url).then(response => {
             let newImages = [{'url': welcome, 'title': null }];
-            const results = response.data.results.slice(3, 7);
+            const results = response.data.results.slice(1, 4);
             results.forEach(element => {
                 if (element.backdrop_path) {
                     newImages.push({'url':imgBaseUrl + element.backdrop_path, 'title': element.title});
@@ -45,14 +47,14 @@ const Slideshow = () => {
 
     useEffect(() => {
         axios.get(url).then(response => {
-            let newImages = [{'url': welcome, 'title': null }];
-            const results = response.data.results.slice(3, 7);
+            let posterImages = [{'url': logo, 'title': null }];
+            const results = response.data.results.slice(1, 4);
             results.forEach(element => {
                 if (element.poster_path) {
-                    newImages.push({'url':posterBaseUrl + element.poster_path, 'title': element.title});
+                    posterImages.push({'url':posterBaseUrl + element.poster_path, 'title': element.title});
                 }
             });
-            setPosters(newImages);
+            setPosters(posterImages);
         });
     }, []);
 
@@ -63,10 +65,27 @@ const Slideshow = () => {
         </div>
     ));
 
+    const posterSlides = posters.map((img, index) => (
+        <div className="each-slide-poster" key={index}>
+            {/* <img src ={img.url} alt={img.title} /> */}
+            <div style={{'backgroundImage': `url(${img.url})`}} />
+            <h2 className='slideshow-title'>{img.title}</h2>
+        </div>
+    ));
+
     return (
-        <Slide {...properties}>
-            {slides}
-        </Slide>
+        <>
+            <div className="backdrop-slides">
+                <Slide {...properties}>
+                    {slides}
+                </Slide>
+            </div>
+            <div className="poster-slides">
+                <Slide {...properties}>
+                    {posterSlides}
+                </Slide>
+            </div>
+        </>
     )
 }
 

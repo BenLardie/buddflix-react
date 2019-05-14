@@ -5,7 +5,7 @@
 .slide-container {
     width: 100px;
     height: 500px;
-    margin: auto; 
+    margin: auto;
 }
 
 .each-slide > div {
@@ -14,14 +14,14 @@
     justify-content: center;
     background-size: auto;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
     height: 500px;
     position: relative;
 }
 
 .slideshow-title {
     position: absolute;
-    top: 420px; 
+    top: 420px;
     font-family: $link-font;
     z-index: 1;
     margin-left: 10px;
@@ -29,3 +29,38 @@
     padding: 0 5px;
 }
 
+.poster-slides {
+    display: block;
+}
+
+.each-slide-poster > div {
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 500px;
+    position: relative;
+
+}
+
+@media (max-width: 600px) {
+    .backdrop-slides {
+        display: none;
+    }
+
+    .poster-slides {
+        display: block;
+    }
+
+    .slide-container {
+        width: auto;
+        height: auto;
+        margin: auto;
+    }
+
+
+
+}
