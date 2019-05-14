@@ -4,6 +4,7 @@ import StrainList from './StrainList';
 import axios from 'axios';
 import './Categories.scss';
 import Search from '../Search/Search'
+import SearchResults from '../Search/SearchReults';
 
 const url = 'https://buddflix.herokuapp.com/api/race/'
 
@@ -27,7 +28,7 @@ const Categories = () => {
     const search = searchValue => {
         axios.get(`https://buddflix.herokuapp.com/api/strain?name__icontains=${searchValue}`)
         .then(response => {
-            setRaces(response.data.objects)
+            SetSearchedStrain(response.data.objects)
             console.log(searchValue)
         })
         .catch(function (error) {
@@ -51,11 +52,12 @@ const Categories = () => {
                 ))}
                 </div>
                 <StrainList selectedRace={selectedRace} />
-                {/* <StrainList searchedStrain={searchedStrain} /> */}
             </div>
         )}
         </Spring>
         <Search search={search} />
+        <SearchResults searchedStrain={searchedStrain} />
+
         </>
     )
 }
