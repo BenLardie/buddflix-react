@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Strain from '../StrainComponets/Strain';
 import Movie from '../movieComponents/Movie';
 import axios from 'axios';
-// import './Categories.scss';
+
 
 const SearchResults = ({ searchedStrain }) => {
     const [strains, setStrains] = useState([]);
@@ -10,17 +10,7 @@ const SearchResults = ({ searchedStrain }) => {
     const [selectedGenre, setSelectedGenre] = useState();
     const strainsRef = useRef(null);
 
-    // useEffect(() => {
-    //     if (selectedRace.id) {
-    //         const url = `https://buddflix.herokuapp.com/api/strain/?race=${selectedRace.id}`
-    //         axios.get(url).then(response => {
-    //             const results = response.data.objects;
-    //             setStrains(results);
-    //         });
-    //     }
-    // }, [selectedRace])
-
-    useEffect(() => {    searchedStrain.forEach(function(strain) {
+    useEffect(() => { searchedStrain.forEach(function(strain) {
         const tempGenre=[]
         let strainRace = strain.race.id
         axios.get(`https://buddflix.herokuapp.com/api/genre?race=${strainRace}`)
