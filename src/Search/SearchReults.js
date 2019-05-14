@@ -36,6 +36,7 @@ const SearchResults = ({ searchedStrain }) => {
 
     return (
         <>
+        {/* {searchedStrain.length > 0 ? <h2>Your search returned {searchedStrain.length} results</h2> : <h2>Sorry no results</h2>  } */}
             <h2 className='strain-race'  ref={strainsRef}>{searchedStrain.name}</h2>
                 <div className="strains">
                     {searchDisplay}

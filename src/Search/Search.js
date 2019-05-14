@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Search.scss'
 
 const Search = (props) => {
 
@@ -24,7 +25,7 @@ return (
         onChange={handleSearchInputChanges}
         type="text"
         />
-        <input onClick={callSearchFunction} type="submit" value="SEARCH" />
+        <input className="search-button" onClick={callSearchFunction} type="submit" value="SEARCH" />
     </form>
     );
 }
