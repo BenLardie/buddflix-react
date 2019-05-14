@@ -127,9 +127,9 @@ html {
 }
 
 
-@media (max-width: 375px) {
+@media (max-width: 800px) {
     .strains {
         display: grid;
         grid-template-columns: 1fr 1fr;
-    }     
+    }
 }
