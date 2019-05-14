@@ -5,7 +5,7 @@
 .slide-container {
     width: 100px;
     height: 500px;
-    margin: auto; 
+    margin: auto;
 }
 
 .each-slide > div {
@@ -14,14 +14,14 @@
     justify-content: center;
     background-size: auto;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
     height: 500px;
     position: relative;
 }
 
 .slideshow-title {
     position: absolute;
-    top: 420px; 
+    top: 420px;
     font-family: $link-font;
     z-index: 1;
     margin-left: 10px;
@@ -29,3 +29,31 @@
     padding: 0 5px;
 }
 
+.poster-slides {
+    display: none;
+}
+
+
+@media (max-width: 800px) {
+    .backdrop-slides {
+        display: none;
+    }
+
+    .poster-slides {
+        display: block;
+    }
+
+    .poster-slides img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .slide-container {
+        width: auto;
+        height: auto;
+        margin: auto;
+    }
+
+
+
+}

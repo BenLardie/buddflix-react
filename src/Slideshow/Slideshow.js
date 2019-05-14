@@ -3,6 +3,7 @@ import { Slide } from 'react-slideshow-image';
 import strain from '../Images/strain.jpg';
 import welcome from '../Images/welcomeBanner.png';
 import Avengers from '../Images/Avengers.png'
+import logo from '../Images/logo.png'
 import './Slideshow.scss';
 import axios from 'axios';
 
@@ -17,7 +18,8 @@ const properties = {
     transitionDuration: 500,
     infinite: true,
     indicators: true,
-    arrows: true
+    arrows: true,
+    imagesWidth: 100,
 }
 
 const api_key = process.env.REACT_APP_TMDB_API_KEY
@@ -28,11 +30,10 @@ const imgBaseUrl = 'https://image.tmdb.org/t/p/w1400_and_h450_face/'
 const Slideshow = () => {
     const [images, setImages] = useState(slideImages);
 
-
     useEffect(() => {
         axios.get(url).then(response => {
             let newImages = [{'url': welcome, 'title': null }];
-            const results = response.data.results.slice(3, 7);
+            const results = response.data.results.slice(1, 4);
             results.forEach(element => {
                 if (element.backdrop_path) {
                     newImages.push({'url':imgBaseUrl + element.backdrop_path, 'title': element.title});
@@ -42,6 +43,7 @@ const Slideshow = () => {
         });
     }, []);
 
+
     const slides = images.map((img, index) => (
         <div className="each-slide" key={index}>
             <div style={{'backgroundImage': `url(${img.url})`}} />
@@ -49,10 +51,18 @@ const Slideshow = () => {
         </div>
     ));
 
+
     return (
-        <Slide {...properties}>
-            {slides}
-        </Slide>
+        <>
+            <div className="backdrop-slides">
+                <Slide {...properties}>
+                    {slides}
+                </Slide>
+            </div>
+            <div className="poster-slides">
+                <img src={logo} alt="buddflix-logo" />
+            </div>
+        </>
     )
 }
 

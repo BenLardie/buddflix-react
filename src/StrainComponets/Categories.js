@@ -3,12 +3,15 @@ import { Spring } from 'react-spring/renderprops'
 import StrainList from './StrainList';
 import axios from 'axios';
 import './Categories.scss';
+import Search from '../Search/Search'
+import SearchResults from '../Search/SearchReults';
 
 const url = 'https://buddflix.herokuapp.com/api/race/'
 
 const Categories = () => {
     const [races, setRaces] = useState([]);
     const [selectedRace, setSelectedRace] = useState({});
+    const [searchedStrain, SetSearchedStrain] =useState([])
     const raceRef = useRef(null);
 
     useEffect(() => {
@@ -22,7 +25,19 @@ const Categories = () => {
         window.scrollTo(0, raceRef.current.offsetTop)
     }, [races]);
 
+    const search = searchValue => {
+        axios.get(`https://buddflix.herokuapp.com/api/strain?name__icontains=${searchValue}`)
+        .then(response => {
+            SetSearchedStrain(response.data.objects)
+            console.log(searchValue)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    };
+
     return (
+        <>
         <Spring
         from={{opacity: 0}}
         to={{opacity: 1}}
@@ -40,7 +55,10 @@ const Categories = () => {
             </div>
         )}
         </Spring>
+        <Search search={search} />
+        <SearchResults searchedStrain={searchedStrain} />
 
+        </>
     )
 }
 
