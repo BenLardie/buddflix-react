@@ -44,7 +44,7 @@ const SearchResults = ({ searchedStrain, searchError }) => {
                     {searchDisplay}
                 </div>
             {selectedGenre && <Movie selectedGenre={selectedGenre} />}
-            </> : <h3>your search returned no results</h3>
+            </> : <h3>Your search returned no results. Please try another strain.</h3>
         }
         </>
     )
