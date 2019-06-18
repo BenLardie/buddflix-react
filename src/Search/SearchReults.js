@@ -4,13 +4,14 @@ import Movie from '../movieComponents/Movie';
 import axios from 'axios';
 
 
-const SearchResults = ({ searchedStrain }) => {
+const SearchResults = ({ searchedStrain, searchError }) => {
     const [strains, setStrains] = useState([]);
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState();
     const strainsRef = useRef(null);
 
     useEffect(() => { searchedStrain.forEach(function(strain) {
+        console.log(searchError)
         const tempGenre=[]
         let strainRace = strain.race.id
         axios.get(`https://buddflix.herokuapp.com/api/genre?race=${strainRace}`)
@@ -36,12 +37,15 @@ const SearchResults = ({ searchedStrain }) => {
 
     return (
         <>
-        {/* {searchedStrain.length > 0 ? <h2>Your search returned {searchedStrain.length} results</h2> : <h2>Sorry no results</h2>  } */}
+        {searchError === false ?
+        <>
             <h2 className='strain-race'  ref={strainsRef}>{searchedStrain.name}</h2>
                 <div className="strains">
                     {searchDisplay}
                 </div>
             {selectedGenre && <Movie selectedGenre={selectedGenre} />}
+            </> : <h3>Your search returned no results. Please try another strain.</h3>
+        }
         </>
     )
 }
