@@ -13,6 +13,7 @@ const AgeVerification = () => {
     const { register, handleSubmit, errors } = useForm()
     const onSubmit = () => {
         setVisible(false);
+        Document.cookie = "ageVerified=true; path=/"
         window.localStorage.setItem(AGE_KEY, true);
 
     }
