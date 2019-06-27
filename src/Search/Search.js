@@ -24,6 +24,7 @@ return (
         value={searchValue}
         onChange={handleSearchInputChanges}
         type="text"
+        placeholder ={"Strain name..."}
         />
         <input className="search-button" onClick={callSearchFunction} type="submit" value="SEARCH" />
     </form>
