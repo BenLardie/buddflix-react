@@ -12,6 +12,7 @@ const Categories = () => {
     const [races, setRaces] = useState([]);
     const [selectedRace, setSelectedRace] = useState({});
     const [searchedStrain, SetSearchedStrain] =useState([])
+    const [searchError, setError] = useState(false);
     const raceRef = useRef(null);
 
     useEffect(() => {
@@ -28,9 +29,14 @@ const Categories = () => {
     const search = searchValue => {
         axios.get(`https://buddflix.herokuapp.com/api/strain?name__icontains=${searchValue}`)
         .then(response => {
+            if (response.data.objects.length > 0){
             SetSearchedStrain(response.data.objects)
+            setError(false)
             console.log(searchValue)
-        })
+        }else {
+            setError(true);
+            console.log(searchError)
+        }})
         .catch(function (error) {
             console.log(error);
         })
@@ -56,7 +62,7 @@ const Categories = () => {
         )}
         </Spring>
         <Search search={search} />
-        <SearchResults searchedStrain={searchedStrain} />
+        <SearchResults searchedStrain={searchedStrain} searchError={searchError} />
 
         </>
     )
