@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Movie.scss';
 import Trailer from './Trailer'
+import Recommendations from './Recommendations';
 
 const Movie = ({ selectedGenre}) => {
 const [movie, setMovie] = useState()
@@ -12,12 +13,11 @@ const backdropBaseUrl = 'https://image.tmdb.org/t/p/w1400_and_h450_face/'
 
 useEffect(() => {
 
-    
+
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_genres=${selectedGenre}`
     const fetchData = async () => {
         const result = await axios.get(url)
         const randomMovie = selectRandom(result.data.results);
-        console.log(randomMovie.title);
         setMovie(randomMovie);
     }
     fetchData();
@@ -33,7 +33,7 @@ function selectRandom(array) {
     return(array[num]);
 }
 
-console.log('Movie:', movie)
+
 
 const renderMovie = movie && (
     <>
@@ -50,6 +50,7 @@ const renderMovie = movie && (
             </div>
         </div>
             <Trailer movieId={movie.id} />
+            <Recommendations movieId={movie.id} />
     </>
 )
 

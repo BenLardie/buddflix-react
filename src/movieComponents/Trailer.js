@@ -18,7 +18,7 @@ const Trailer = ( {movieId} ) => {
     }
     })
     },[movieId])
-    console.log(trailerId)
+   
 
     return (
     <>
