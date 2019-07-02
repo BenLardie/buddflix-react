@@ -18,7 +18,6 @@ const Trailer = ( {movieId} ) => {
     }
     })
     },[movieId])
-   
 
     return (
     <>

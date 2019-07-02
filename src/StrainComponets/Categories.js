@@ -32,10 +32,8 @@ const Categories = () => {
             if (response.data.objects.length > 0){
             SetSearchedStrain(response.data.objects)
             setError(false)
-            console.log(searchValue)
         }else {
             setError(true);
-            console.log(searchError)
         }})
         .catch(function (error) {
             console.log(error);

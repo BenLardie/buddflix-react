@@ -19,6 +19,7 @@ useEffect(() => {
         const result = await axios.get(url)
         const randomMovie = selectRandom(result.data.results);
         setMovie(randomMovie);
+
     }
     fetchData();
 }, [selectedGenre])
