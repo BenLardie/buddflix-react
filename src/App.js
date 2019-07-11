@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
+import React, {useEffect, useState} from 'react';
 import AgeVerification from './AgeVerification/AgeVerification';
 import Navigation from './Navigation/Navigation';
 
 
 
-class App extends Component {
+const App = () =>  {
 
-  render() {
+  const [age, setAge] = useState(null);
+
+  useEffect(()=> {
+    console.log(window.localStorage)
+    setAge(window.localStorage['ageVerified'])
+  })
+
+  console.log(age)
+
     return (
 
         <>
           <Navigation />
-          {/* <AgeVerification /> */}
+          {!age ?
+          <AgeVerification /> : null
+          }
         </>
 
     );
   }
-}
+
 
 export default App;
