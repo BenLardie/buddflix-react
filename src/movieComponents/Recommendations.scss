@@ -1,0 +1,46 @@
+.recommendations-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    background: black;
+    padding-bottom: 10px;
+    border-radius: 25px;
+
+    .card {
+    flex: 0 0 auto;
+    // max-width: 50%;
+    width: 320px;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+    }
+
+    img {
+        max-width: 40%;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block;
+        cursor: pointer;
+        box-shadow:7px 7px 0px 0px white;
+        transition: all 300ms ease-in-out;
+        left:0;
+        top:0;
+        position:relative;
+        border-radius: 25px;
+    }
+
+    img:hover {
+        left:4px;
+        top:4px;
+        box-shadow:0 0 0 0 white;
+    }
+
+    h3 {
+        text-align: center;
+        color: white;
+    }
+}
+
+.suggestions-title {
+    color: black;
+}

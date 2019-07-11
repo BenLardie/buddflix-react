@@ -5,25 +5,23 @@ import axios from 'axios';
 
 
 const SearchResults = ({ searchedStrain, searchError }) => {
-    const [strains, setStrains] = useState([]);
+    const [strains] = useState([]);
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState();
     const strainsRef = useRef(null);
 
     useEffect(() => { searchedStrain.forEach(function(strain) {
-        console.log(searchError)
         const tempGenre=[]
         let strainRace = strain.race.id
         axios.get(`https://buddflix.herokuapp.com/api/genre?race=${strainRace}`)
         .then(response => {
             let respObj = response.data.objects;
-            respObj.forEach((item) => {
-                tempGenre.push(item.tmdb_id)
-                setGenres(tempGenre)
+                respObj.forEach((item) => {
+                    tempGenre.push(item.tmdb_id)
+                    setGenres(tempGenre)
         })
     })
-
-    })}
+})}
 , [searchedStrain]);
 
     useEffect(() => {
