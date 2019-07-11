@@ -57,10 +57,11 @@ const renderMovie = movie && (
 
 return (
     <>
+    <div ref={movieRef}></div>
         <div>
             {renderMovie}
         </div>
-        <div ref={movieRef}></div>
+
     </>
 )
 
