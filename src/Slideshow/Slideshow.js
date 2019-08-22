@@ -30,8 +30,18 @@ const imgBaseUrl = 'https://image.tmdb.org/t/p/w1400_and_h450_face/'
 const Slideshow = () => {
     const [images, setImages] = useState(slideImages);
 
-
-    
+    useEffect(() => {
+        axios.get(url).then(response => {
+            let newImages = [{'url': welcome, 'title': null }];
+            const results = response.data.results.slice(1, 4);
+            results.forEach(element => {
+                if (element.backdrop_path) {
+                    newImages.push({'url':imgBaseUrl + element.backdrop_path, 'title': element.title});
+                }
+            });
+            setImages(newImages);
+        });
+    }, []);
 
 
     const slides = images.map((img, index) => (

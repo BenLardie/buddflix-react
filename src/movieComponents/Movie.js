@@ -3,7 +3,6 @@ import axios from 'axios';
 import './Movie.scss';
 import Trailer from './Trailer'
 import Recommendations from './Recommendations';
-import Doughnut from './Doughnut';
 
 const Movie = ({ selectedGenre }) => {
     const [movie, setMovie] = useState()
@@ -43,7 +42,6 @@ const Movie = ({ selectedGenre }) => {
                 <div className="movie-poster">
                     <img src={`${imgBaseUrl}${movie.poster_path}`} alt={movie.title} />
                 </div>
-                <Doughnut id={movie.id} />
                 <div className="back-drop">
                     <img src={`${backdropBaseUrl}${movie.backdrop_path}`} alt={movie.title} />
                     <div className='movie-details'>
