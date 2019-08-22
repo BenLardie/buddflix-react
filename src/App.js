@@ -9,11 +9,9 @@ const App = () =>  {
   const [age, setAge] = useState(null);
 
   useEffect(()=> {
-    console.log(window.localStorage)
     setAge(window.localStorage['ageVerified'])
   })
 
-  console.log(age)
 
     return (
 
